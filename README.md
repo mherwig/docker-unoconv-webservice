@@ -2,40 +2,19 @@
 
 Dockerimage to run unoconv as a webservice through [tfk-api-unoconv](https://github.com/zrrrzzt/tfk-api-unoconv).
 
-If you prefer a pre-build version it is available from [hub.docker.com](https://hub.docker.com/r/zrrrzzt/docker-unoconv-webservice)
-just do a regular pull
-
+## Run
 ```bash
-$ docker pull zrrrzzt/docker-unoconv-webservice
-```
-
-## Build
-
-```bash
-$ docker build -t docker-unoconv-webservice .
-```
-
-## Run - example
-```bash
-$ docker run -d -p 80:3000 --name unoconv docker-unoconv-webservice
-```
-
-or if you use the pre-build version
-
-```bash
-$ docker run -d -p 80:3000 --name unoconv zrrrzzt/docker-unoconv-webservice
+$ docker run -d -p 3000:3000 --name unoconv mherwig/docker-unoconv-webservice
 ```
 
 ## Usage
 
-Post the file you want to convert to the server and get the converted file in return.
-
-See all possible conversions on the [unoconv website](http://dag.wiee.rs/home-made/unoconv/).
+Post the file you want to convert to the server and get the converted file in return. See all possible conversions on the [unoconv website](http://dag.wiee.rs/home-made/unoconv/).
 
 API for the webservice is /unoconv/{format-to-convert-to} so a docx to pdf would be
 
 ```bash
-$ curl --form file=@myfile.docx http://localhost/unoconv/pdf > myfile.pdf
+$ curl --form file=@myfile.docx http://localhost:3000/unoconv/pdf > myfile.pdf
 ```
 
 ### Formats
@@ -75,10 +54,8 @@ TIMEOUT_SOCKET default is 2 minutes and 20 seconds (140 000 milliseconds)
 Change it in the Dockerfile or create an env-file and load it at containerstart
 
 ```bash
-$ docker run --env-file=docker.env -d -p 80:3000 --name unoconv docker-unoconv-webservice
+$ docker run --env-file=docker.env -d -p 3000:3000 --name unoconv mherwig/docker-unoconv-webservice
 ```
 
 ## License
 [MIT](LICENSE)
-
-![Robohash image of docker-unoconv-webservice](https://robots.kebabstudios.party/docker-unoconv-webservice.png "Robohash image of docker-unoconv-webservice")
