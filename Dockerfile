@@ -16,7 +16,7 @@ RUN apk --no-cache add bash \
 
 RUN update-ms-fonts && fc-cache -f
 
-RUN git clone https://github.com/zrrrzzt/tfk-api-unoconv.git unoconvservice
+RUN git clone https://github.com/mherwig/tfk-api-unoconv.git unoconvservice
 
 WORKDIR /unoconvservice
 
